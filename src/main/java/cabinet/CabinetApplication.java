@@ -8,5 +8,6 @@ public class CabinetApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CabinetApplication.class, args);
+		System.out.println("test git");
 	}
 }
