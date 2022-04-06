@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 @Tag(name = "Patient", description = "the Patient API")
@@ -40,13 +41,16 @@ public class PatientController {
             @ApiResponse(responseCode = "400", description = "Invalid input"),
             @ApiResponse(responseCode = "409", description = "Patient already exists") })
     @PostMapping("/patients")
-    public ResponseEntity<Patient>save( @Valid @RequestBody Patient patient){
+    public ResponseEntity<Patient>save(@RequestBody Patient patient){
         return new ResponseEntity<>(service.add(patient), HttpStatus.OK);
+    }
+    @PutMapping("/patients/{id}")
+    public ResponseEntity<Patient>modP(@RequestBody Patient patient,@PathVariable("id") long id){
+        return new ResponseEntity<>(service.mod(patient, id),HttpStatus.OK);
     }
     @DeleteMapping("/patients/{id}")
     public ResponseEntity<HttpStatus>delP(@PathVariable("id")long id){
         service.del(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

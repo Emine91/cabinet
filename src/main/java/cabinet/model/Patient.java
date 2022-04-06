@@ -1,5 +1,6 @@
 package cabinet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="patient")
@@ -37,6 +39,7 @@ public class Patient {
     @Column(name="email")
     private String email;
 
-    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY )
-    Collection<RendezVous> rendezVous;
+    @JsonIgnore
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+    private List<RendezVous> rendezVous;
 }

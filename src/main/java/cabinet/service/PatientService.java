@@ -35,7 +35,7 @@ public class PatientService {
     }
 
     public Patient getById(long id){
-        try{
+      //  try{
             Optional<Patient> pat=repo.findById(id);
             if(pat.isPresent()){
               return pat.get();
@@ -43,22 +43,17 @@ public class PatientService {
                 throw new NotFoundException("le patient inexistant");
             }
 
-       }catch(Exception ex){
+   /*    }catch(Exception ex){
             throw new InternalServerException("Internal server problem");
-        }
+        }*/
     }
 
     public Patient add(Patient patient){
 
         try{
        Patient p=repo.findByNomAndPrenom(patient.getNom(),patient.getPrenom());
-            if(p.getNom().equals("")){
-             throw new ConflitException("ce patient existe deja");
-            }else{
                 Patient pat=repo.save(patient);
                 return pat;
-            }
-
         }catch (Exception ex){
             throw new InternalServerException("Internal server problem");
         }

@@ -23,20 +23,21 @@ services:
       spring.jpa.hibernate.ddl-auto: create
     networks: # Networks to join (Services on the same network can communicate with each other using their name)
       - backend
-      #- frontend
+      - frontend
 
       # Frontend Service
-      #app-client:
-      #build:
-      # context: angular-11-social-login # Use an image built from the specified dockerfile in the `angular-11-social-login` directory.
-      #dockerfile: Dockerfile
-      #ports:
-      # - "8081:80" # Map the exposed port 80 on the container to port 8081 on the host machine
-      #restart: always
-      #depends_on:
-      # - app-server
-      #networks:
-      # - frontend
+  app-client:
+    image: docker.io/aminemeeed/cabinet-front
+    build:
+      context: "./" #angular-11-social-login # Use an image built from the specified dockerfile in the `angular-11-social-login` directory.
+      dockerfile: Dockerfile
+    ports:
+        - "4200:80" # Map the exposed port 80 on the container to port 8081 on the host machine
+    restart: always
+    depends_on:
+      - app-server
+    networks:
+        - frontend
 
   # Database Service (Mysql)
   db:
@@ -54,4 +55,5 @@ services:
 # Networks to be created to facilitate communication between containers
 networks:
   backend:
-  #frontend:
+  frontend:
+

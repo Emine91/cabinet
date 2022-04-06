@@ -1,5 +1,6 @@
 package cabinet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class RendezVous {
     private Patient patient;
     @ManyToOne()
     private Medecin medecin;
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(mappedBy = "rendezVous")
     private Consultation consultation;
 }

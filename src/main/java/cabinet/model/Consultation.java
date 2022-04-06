@@ -1,5 +1,6 @@
 package cabinet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,8 +26,6 @@ public class Consultation {
     @Column(name="prix")
     private double prix;
 
-    @OneToOne(mappedBy = "consultation")
+    @OneToOne()
     private RendezVous rendezVous;
-
-
 }

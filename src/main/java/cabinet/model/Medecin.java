@@ -1,11 +1,13 @@
 package cabinet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="medecin")
@@ -24,7 +26,7 @@ public class Medecin {
     @Column(name="email")
     private String email;
 
-    @OneToMany(mappedBy = "medecin", fetch = FetchType.LAZY)
-    Collection<RendezVous>rendezVous;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "medecin")
+    private List<RendezVous> rendezVous;
 }
