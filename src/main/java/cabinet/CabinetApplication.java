@@ -12,7 +12,7 @@ public class CabinetApplication implements CommandLineRunner {
 	FileStorageService storageService;
 	public static void main(String[] args) {
 		SpringApplication.run(CabinetApplication.class, args);
-		System.out.println("work s");
+		System.out.println("work system");
 	}
 
 	@Override
